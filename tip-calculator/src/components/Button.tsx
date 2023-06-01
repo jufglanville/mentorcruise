@@ -34,9 +34,10 @@ const ButtonElement = styled.button<TranscientProps>`
   border: none;
   border-radius: 4px;
   padding: 8px 16px;
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 700;
   text-transform: uppercase;
+  text-align: center;
   letter-spacing: 0.5px;
   cursor: pointer;
   &:hover {

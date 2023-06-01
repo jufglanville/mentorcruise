@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -39,8 +39,12 @@ const Input = ({
     }
   };
 
+  useEffect(() => {
+    setInputValue(value !== 0 ? value : '');
+  }, [value]);
+
   return (
-    <Container>
+    <div>
       <LabelContainer>
         {label && <Heading>{label}</Heading>}
         {inputError && <ErrorText>{error}</ErrorText>}
@@ -55,13 +59,9 @@ const Input = ({
           placeholder={placeholder || (type === 'string' ? '' : '0')}
         />
       </InputContainer>
-    </Container>
+    </div>
   );
 };
-
-const Container = styled.div`
-  width: fit-content;
-`;
 
 const LabelContainer = styled.div`
   display: flex;
@@ -70,13 +70,13 @@ const LabelContainer = styled.div`
 
 const InputContainer = styled.div`
   position: relative;
-  margin: 10px 0;
 `;
 
 const Heading = styled.p`
   font-size: 16px;
   color: var(--dark-grayish-cyan);
   font-weight: 700;
+  margin-bottom: 10px;
 `;
 
 const ErrorText = styled(Heading)`
@@ -91,6 +91,7 @@ const Icon = styled.img`
 `;
 
 const InputElement = styled.input<{ inputError?: boolean }>`
+  width: 100%;
   padding: 5px 10px;
   text-align: right;
   background-color: transparent;
