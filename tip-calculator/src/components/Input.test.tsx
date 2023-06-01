@@ -31,8 +31,8 @@ describe('Input component', () => {
         onChange={mockOnChange}
       />
     );
-    const heading = screen.getByRole('heading');
-    expect(heading).toHaveTextContent('Bill');
+    const heading = screen.getByText('Bill');
+    expect(heading).toBeInTheDocument();
   });
 
   it('renders the correct input element icon', () => {

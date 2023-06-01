@@ -28,6 +28,12 @@ const App = () => {
         onChange={handleChange}
         error="Can't be zero"
       />
+      <Input
+        type="integar"
+        value={0}
+        onChange={handleChange}
+        placeholder="Custom"
+      />
     </div>
   );
 };
