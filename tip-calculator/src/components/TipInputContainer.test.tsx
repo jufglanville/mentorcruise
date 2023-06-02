@@ -1,31 +1,45 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import TipInputContainer from './TipInputContainer';
+import { UnionType } from '../types';
+
+const pricePlanData: UnionType[] = [
+  {
+    type: 'Input',
+    valueType: 'float',
+    id: 'id_1',
+    name: 'Bill',
+    value: 0,
+    onChange: jest.fn(),
+  },
+  {
+    type: 'TipAmountContainer',
+    id: 'id_2',
+    name: 'Select Tip %',
+    value: 0,
+    custom: true,
+    valueOptions: [5, 10, 15, 25, 50],
+    onChange: jest.fn(),
+  },
+  {
+    type: 'Input',
+    valueType: 'integer',
+    id: 'id_3',
+    name: 'Number of People',
+    value: 0,
+    error: "Can't be zero",
+    onChange: jest.fn(),
+  },
+];
 
 describe('TipInputContainer', () => {
-  it('should update the bill value when the bill input is changed', () => {
-    const { getByLabelText } = render(<TipInputContainer />);
-    const billInput = getByLabelText('Bill') as HTMLInputElement;
-    
-    fireEvent.change(billInput, { target: { value: '25.5' } });
-    
-    expect(billInput.value).toBe('25.5');
+  it('renders TipInputContainer without errors', () => {
+    render(<TipInputContainer data={[]} onChange={() => {}} />);
   });
-  
-  it('should update the tip value when the TipAmountContainer emits a change event', () => {
-    const { getByText } = render(<TipInputContainer />);
-    
-    fireEvent.click(getByText('15%'));
-    
-    // Assert that the tip value is updated in some way
-  });
-  
-  it('should update the people value when the people input is changed', () => {
-    const { getByLabelText } = render(<TipInputContainer />);
-    const peopleInput = getByLabelText('Number of People') as HTMLInputElement;
-    
-    fireEvent.change(peopleInput, { target: { value: '4' } });
-    
-    expect(peopleInput.value).toBe('4');
+
+  it('renders correct number of child components', () => {
+    const { container } = render(<TipInputContainer data={pricePlanData} onChange={() => {}} />);
+    const componentElement = container.firstChild as HTMLElement;
+    expect(componentElement.childElementCount).toBe(pricePlanData.length);
   });
 });

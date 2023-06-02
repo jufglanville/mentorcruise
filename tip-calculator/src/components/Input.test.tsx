@@ -10,8 +10,10 @@ describe('Input component', () => {
   it('renders an input element', () => {
     render(
       <Input
-        label="Bill"
-        type="integar"
+        id="test"
+        type="Input"
+        name="Bill"
+        valueType="integer"
         value={0}
         icon="https://via.placeholder.com/20"
         onChange={mockOnChange}
@@ -24,8 +26,10 @@ describe('Input component', () => {
   it('renders the correct input element label', () => {
     render(
       <Input
-        label="Bill"
-        type="integar"
+        id="test"
+        type="Input"
+        name="Bill"
+        valueType="integer"
         value={0}
         icon="https://via.placeholder.com/20"
         onChange={mockOnChange}
@@ -38,8 +42,10 @@ describe('Input component', () => {
   it('renders the correct input element icon', () => {
     render(
       <Input
-        label="Bill"
-        type="integar"
+        id="test"
+        type="Input"
+        name="Bill"
+        valueType="integer"
         value={0}
         icon="https://via.placeholder.com/20"
         onChange={mockOnChange}
@@ -53,12 +59,14 @@ describe('Input component', () => {
     it('calls the onChange callback when a valid input is given', () => {
       const mockOnChange = jest.fn();
       const value = '123';
+      const id = 'test';
 
       render(
         <Input
-          label="Test Label"
-          icon="test-icon.png"
-          type="integar"
+          id={id}
+          type="Input"
+          name="Bill"
+          valueType="integer"
           value=""
           onChange={mockOnChange}
         />
@@ -68,7 +76,7 @@ describe('Input component', () => {
       fireEvent.change(inputElement, { target: { value } });
 
       expect(mockOnChange).toHaveBeenCalledTimes(1);
-      expect(mockOnChange).toHaveBeenCalledWith(value);
+      expect(mockOnChange).toHaveBeenCalledWith(id, value);
     });
 
     it('does not call the onChange callback when an invalid input is given', () => {
@@ -77,9 +85,10 @@ describe('Input component', () => {
 
       render(
         <Input
-          label="Test Label"
-          icon="test-icon.png"
-          type="integar"
+          id="test"
+          type="Input"
+          name="Bill"
+          valueType="integer"
           value=""
           onChange={mockOnChange}
         />
@@ -96,12 +105,14 @@ describe('Input component', () => {
     it('calls the onChange callback when a valid input is given', () => {
       const mockOnChange = jest.fn();
       const value = '12.34';
+      const id = 'test';
 
       render(
         <Input
-          label="Test Label"
-          icon="test-icon.png"
-          type="float"
+          id={id}
+          type="Input"
+          name="Bill"
+          valueType="float"
           value=""
           onChange={mockOnChange}
         />
@@ -111,7 +122,7 @@ describe('Input component', () => {
       fireEvent.change(inputElement, { target: { value } });
 
       expect(mockOnChange).toHaveBeenCalledTimes(1);
-      expect(mockOnChange).toHaveBeenCalledWith(value);
+      expect(mockOnChange).toHaveBeenCalledWith(id, value);
     });
 
     it('does not call the onChange callback when an invalid input is given', () => {
@@ -120,9 +131,10 @@ describe('Input component', () => {
 
       render(
         <Input
-          label="Test Label"
-          icon="test-icon.png"
-          type="float"
+          id="test"
+          type="Input"
+          name="Bill"
+          valueType="float"
           value=""
           onChange={mockOnChange}
         />
@@ -139,12 +151,14 @@ describe('Input component', () => {
     it('calls the onChange callback when a valid input is given', () => {
       const mockOnChange = jest.fn();
       const value = 'TestValue';
+      const id = 'test';
 
       render(
         <Input
-          label="Test Label"
-          icon="test-icon.png"
-          type="string"
+          id={id}
+          type="Input"
+          name="Bill"
+          valueType="string"
           value=""
           onChange={mockOnChange}
         />
@@ -154,7 +168,7 @@ describe('Input component', () => {
       fireEvent.change(inputElement, { target: { value } });
 
       expect(mockOnChange).toHaveBeenCalledTimes(1);
-      expect(mockOnChange).toHaveBeenCalledWith(value);
+      expect(mockOnChange).toHaveBeenCalledWith(id, value);
     });
 
     it('does not call the onChange callback when an invalid input is given', () => {
@@ -163,9 +177,10 @@ describe('Input component', () => {
 
       render(
         <Input
-          label="Test Label"
-          icon="test-icon.png"
-          type="string"
+          id="test"
+          type="Input"
+          name="Bill"
+          valueType="string"
           value=""
           onChange={mockOnChange}
         />
