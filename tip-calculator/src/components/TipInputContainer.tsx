@@ -1,44 +1,26 @@
-import React, { useState } from 'react';
-import Input from './Input';
-
-import dollar from '../assets/icon-dollar.svg';
-import person from '../assets/icon-person.svg';
+import React from 'react';
 import styled from 'styled-components';
+import { UnionType } from '../types';
+import Input from './Input';
 import TipAmountContainer from './TipAmountContainer';
 
-const TipInputContainer = () => {
-  const [bill, setBill] = useState(0);
-  const [tip, setTip] = useState(0);
-  const [people, setPeople] = useState(0);
+interface Props {
+  data: UnionType[];
+  onChange: (id: string, value: string | number) => void;
+}
 
-  const updateBill = (value: string) => {
-    const parsedValue = parseFloat(value) ? parseInt(value) : 0;
-    setBill(parsedValue);
-  };
+const componentMapping: { [key: string]: React.ComponentType<any> } = {
+  Input,
+  TipAmountContainer,
+};
 
-  const updatePeople = (value: string) => {
-    const parsedValue = parseInt(value) ? parseInt(value) : 0;
-    setPeople(parsedValue);
-  };
-
+const TipInputContainer = ({ data, onChange }: Props) => {
   return (
     <InputContainer>
-      <Input
-        label="Bill"
-        type="float"
-        value={bill}
-        icon={dollar}
-        onChange={(val) => updateBill(val as string)}
-      />
-      <TipAmountContainer onChange={(val) => setTip(val)} />
-      <Input
-        label="Number of People"
-        type="integar"
-        value={people}
-        icon={person}
-        onChange={(val) => updatePeople(val as string)}
-        error="Can't be zero"
-      />
+      {data.map((item) => {
+        const Component = componentMapping[item.type];
+        return <Component key={item.id} {...item} onChange={onChange} />;
+      })}
     </InputContainer>
   );
 };

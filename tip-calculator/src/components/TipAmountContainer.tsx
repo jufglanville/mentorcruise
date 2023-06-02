@@ -3,13 +3,25 @@ import styled from 'styled-components';
 
 import Button from './Button';
 import Input from './Input';
-import { parse } from '@babel/core';
 
-interface Props {
-  onChange: (value: number) => void;
-}
+import { InputType, TipsType } from '../types';
 
-const TipAmountContainer = ({ onChange }: Props) => {
+const customTipObj: InputType = {
+  type: 'Input',
+  id: 'id_1',
+  value: 0,
+  valueType: 'integer',
+  placeholder: 'Custom',
+  onChange: (id: string, value: string | number) => {},
+};
+
+const TipAmountContainer = ({
+  id,
+  name,
+  valueOptions,
+  custom,
+  onChange,
+}: TipsType) => {
   const [tip, setTip] = useState(0);
   const [customTip, setCustomTip] = useState(0);
 
@@ -18,36 +30,35 @@ const TipAmountContainer = ({ onChange }: Props) => {
     setCustomTip(0);
   };
 
-  const handleCustomChange = (value: string) => {
+  const handleCustomChange = (id: string, value: string) => {
     const parsedValue = parseInt(value) ? parseInt(value) : 0;
     setCustomTip(parsedValue);
     setTip(parsedValue);
   };
 
   useEffect(() => {
-    onChange(tip);
+    onChange(id, tip);
   }, [tip]);
-
-  const tipOptions = [5, 10, 15, 25, 50];
 
   return (
     <Container>
-      <Heading>Select Tip %</Heading>
-      {tipOptions.map((tipOption) => (
+      <Heading>{name}</Heading>
+      {valueOptions.map((valueOption) => (
         <Button
-          key={tipOption}
-          selected={tip === tipOption}
-          onClick={() => handleChange(tipOption)}
+          key={valueOption}
+          selected={tip === valueOption}
+          onClick={() => handleChange(valueOption)}
         >
-          {tipOption}%
+          {valueOption}%
         </Button>
       ))}
-      <Input
-        type="integar"
-        value={customTip}
-        onChange={(val) => handleCustomChange(val as string)}
-        placeholder="Custom"
-      />
+      {custom && (
+        <Input
+          {...customTipObj}
+          value={customTip}
+          onChange={(id, value) => handleCustomChange(id, value as string)}
+        />
+      )}
     </Container>
   );
 };

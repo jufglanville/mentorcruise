@@ -1,11 +1,11 @@
 import React from 'react';
-import TipInputContainer from './components/TipInputContainer';
+import TipCalculator from './components/TipCalculator';
 
 const App = () => {
   return (
     <div>
       App
-      <TipInputContainer />
+      <TipCalculator />
     </div>
   );
 };

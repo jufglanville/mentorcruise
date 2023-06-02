@@ -1,30 +1,22 @@
 import React, { useState, ChangeEvent, useEffect } from 'react';
 import styled from 'styled-components';
-
-interface Props {
-  icon?: string;
-  label?: string;
-  type: 'float' | 'integar' | 'string';
-  value: string | number;
-  error?: string;
-  placeholder?: string;
-  onChange: (value: string | number) => void;
-}
+import { InputType } from '../types';
 
 const Input = ({
-  label,
+  id,
   icon,
-  type,
+  name,
+  valueType,
   value,
   error,
   placeholder,
   onChange,
-}: Props) => {
+}: InputType) => {
   const [inputValue, setInputValue] = useState(value !== 0 ? value : '');
   const [inputError, setInputError] = useState(false);
 
   const validator = {
-    integar: /^(?!0)\d*$|^$/,
+    integer: /^(?!0)\d*$|^$/,
     float: /^0(\.\d{0,2})?$|^[1-9]\d*(\.\d{0,2})?$|^$/,
     string: /^[A-Za-z]*$|^$/,
   };
@@ -32,9 +24,9 @@ const Input = ({
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
 
-    if (validator[type].test(value)) {
+    if (validator[valueType].test(value)) {
       setInputValue(value);
-      onChange(value);
+      onChange(id, value);
       setInputError((error && value === '') as boolean);
     }
   };
@@ -46,7 +38,7 @@ const Input = ({
   return (
     <div>
       <LabelContainer>
-        {label && <Heading>{label}</Heading>}
+        {name && <Heading>{name}</Heading>}
         {inputError && <ErrorText>{error}</ErrorText>}
       </LabelContainer>
       <InputContainer>
@@ -56,7 +48,7 @@ const Input = ({
           data-testid="input"
           value={inputValue}
           onChange={handleChange}
-          placeholder={placeholder || (type === 'string' ? '' : '0')}
+          placeholder={placeholder || (valueType === 'string' ? '' : '0')}
         />
       </InputContainer>
     </div>
