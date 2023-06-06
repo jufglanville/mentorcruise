@@ -18,27 +18,29 @@ const customTipObj: InputType = {
 const TipAmountContainer = ({
   id,
   name,
+  value,
   valueOptions,
   custom,
   onChange,
 }: TipsType) => {
-  const [tip, setTip] = useState(0);
-  const [customTip, setCustomTip] = useState(0);
+  const [customTip, setCustomTip] = useState(value);
 
   const handleChange = (value: number) => {
-    setTip(value);
     setCustomTip(0);
+    onChange(id, value);
   };
 
-  const handleCustomChange = (id: string, value: string) => {
+  const handleCustomChange = (value: string) => {
     const parsedValue = parseInt(value) ? parseInt(value) : 0;
     setCustomTip(parsedValue);
-    setTip(parsedValue);
+    onChange(id, parsedValue);
   };
 
   useEffect(() => {
-    onChange(id, tip);
-  }, [tip]);
+    if (value === 0) {
+      setCustomTip(0);
+    }
+  }, [valueOptions, value]);
 
   return (
     <Container>
@@ -46,7 +48,7 @@ const TipAmountContainer = ({
       {valueOptions.map((valueOption) => (
         <Button
           key={valueOption}
-          selected={tip === valueOption}
+          selected={value === valueOption}
           onClick={() => handleChange(valueOption)}
         >
           {valueOption}%
@@ -55,8 +57,8 @@ const TipAmountContainer = ({
       {custom && (
         <Input
           {...customTipObj}
-          value={customTip}
-          onChange={(id, value) => handleCustomChange(id, value as string)}
+          value={valueOptions.includes(value as number) ? 0 : customTip}
+          onChange={(id, value) => handleCustomChange(value as string)}
         />
       )}
     </Container>

@@ -3,9 +3,10 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import TipOutputContainer from './TipOutputContainer';
 
 const output = {
-  tip: 10,
+  tipAmount: 10,
   total: 20.23,
   currency: '$',
+  active: true,
 };
 
 describe('TipOutputContainer', () => {

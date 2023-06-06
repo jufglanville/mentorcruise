@@ -1,15 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UnionType } from '../types';
+import { OutputType } from '../types';
 import Button from './Button';
 import AmountOutput from './AmountOutput';
 
 interface Props {
-  data: {
-    tip: number;
-    total: number;
-    currency: string;
-  };
+  data: OutputType;
   onReset: () => void;
 }
 
@@ -18,11 +14,11 @@ const TipOutputContainer = ({ data, onReset: handleReset }: Props) => {
     <Container>
       <AmountOutput
         label="Tip Amount"
-        value={data.tip}
+        value={data.tipAmount}
         currency={data.currency}
       />
       <AmountOutput label="Total" value={data.total} currency={data.currency} />
-      <Button onClick={handleReset} selected={true}>
+      <Button onClick={handleReset} selected={true} disabled={!data.active}>
         RESET
       </Button>
     </Container>

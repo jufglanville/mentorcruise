@@ -23,3 +23,10 @@ export type TipsType = {
 }
 
 export type UnionType = InputType | TipsType;
+
+export type OutputType = {
+  currency: string;
+  tipAmount: number;
+  total: number;
+  active: boolean;
+}
