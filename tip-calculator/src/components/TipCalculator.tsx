@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { pricePlanData as data } from '../data/pricePlans';
 import TipInputContainer from './TipInputContainer';
+import TipOutputContainer from './TipOutputContainer';
 
 const TipCalculator = () => {
   const [pricePlanData, setPricePlanData] = useState(data);
@@ -19,6 +20,7 @@ const TipCalculator = () => {
   return (
     <div>
       <TipInputContainer data={pricePlanData} onChange={handleChange} />
+      <TipOutputContainer data={pricePlanData} onChange={handleChange} />
     </div>
   );
 };
