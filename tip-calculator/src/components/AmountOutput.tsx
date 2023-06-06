@@ -16,7 +16,7 @@ const AmountOutput = ({ label, value, currency }: Props) => {
       </LabelContainer>
       <Amount>
         {currency}
-        {value}
+        {value.toFixed(2)}
       </Amount>
     </Container>
   );

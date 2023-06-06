@@ -17,10 +17,20 @@ const TipCalculator = () => {
     setPricePlanData(updatedPricePlanData);
   };
 
+  const handleReset = () => {
+    console.log('handle Reset');
+  };
+
+  const output = {
+    tip: 10,
+    total: 20.23,
+    currency: '$',
+  };
+
   return (
     <div>
       <TipInputContainer data={pricePlanData} onChange={handleChange} />
-      <TipOutputContainer data={pricePlanData} onChange={handleChange} />
+      <TipOutputContainer data={output} onReset={handleReset} />
     </div>
   );
 };

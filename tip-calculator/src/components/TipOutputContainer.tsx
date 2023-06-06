@@ -5,20 +5,24 @@ import Button from './Button';
 import AmountOutput from './AmountOutput';
 
 interface Props {
-  data: UnionType[];
-  onChange: (id: string, value: string | number) => void;
+  data: {
+    tip: number;
+    total: number;
+    currency: string;
+  };
+  onReset: () => void;
 }
 
-const TipOutputContainer = ({ data, onChange }: Props) => {
-  const handleClick = () => {
-    console.log('reset');
-  };
-
+const TipOutputContainer = ({ data, onReset: handleReset }: Props) => {
   return (
     <Container>
-      <AmountOutput label="Tip Amount" value={0.0} currency={'$'} />
-      <AmountOutput label="Total" value={20.23} currency={'$'} />
-      <Button onClick={handleClick} selected={true}>
+      <AmountOutput
+        label="Tip Amount"
+        value={data.tip}
+        currency={data.currency}
+      />
+      <AmountOutput label="Total" value={data.total} currency={data.currency} />
+      <Button onClick={handleReset} selected={true}>
         RESET
       </Button>
     </Container>
