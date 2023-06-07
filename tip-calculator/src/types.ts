@@ -22,9 +22,9 @@ export type TipsType = {
   onChange: (id: string, value: number | string) => void;
 }
 
-export type UnionType = InputType | TipsType;
+export type FormInputTypes = InputType | TipsType;
 
-export type OutputType = {
+export type TipOutputType = {
   currency: string;
   tipAmount: number;
   total: number;

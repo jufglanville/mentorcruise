@@ -1,8 +1,8 @@
-import { UnionType } from '../types';
+import { FormInputTypes, TipOutputType } from '../types';
 import dollar from '../assets/icon-dollar.svg';
 import person from '../assets/icon-person.svg';
 
-export const pricePlanData: UnionType[] = [
+export const formInputs: FormInputTypes[] = [
   {
     type: 'Input',
     valueType: 'float',
@@ -32,3 +32,17 @@ export const pricePlanData: UnionType[] = [
     onChange: (id: string, value: string | number) => {},
   },
 ];
+
+export class TipOutput implements TipOutputType {
+  public currency: string;
+  public tipAmount: number;
+  public total: number;
+  public active: boolean;
+
+  constructor(currency: string) {
+    this.currency = currency;
+    this.tipAmount = 0;
+    this.total = 0;
+    this.active = false;
+  }
+}

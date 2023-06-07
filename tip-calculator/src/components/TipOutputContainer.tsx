@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { OutputType } from '../types';
+import { TipOutputType } from '../types';
 import Button from './Button';
 import AmountOutput from './AmountOutput';
 
 interface Props {
-  data: OutputType;
+  data: TipOutputType;
   onReset: () => void;
 }
 
