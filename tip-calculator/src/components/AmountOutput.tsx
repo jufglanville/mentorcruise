@@ -49,6 +49,10 @@ const Amount = styled.p`
   font-size: 48px;
   color: var(--primary);
   font-weight: 700;
+
+  @media (max-width: 450px) {
+    font-size: 36px;
+  }
 `;
 
 export default AmountOutput;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { formInputs, TipOutput } from '../data/formInput';
 import TipInputContainer from './TipInputContainer';
 import TipOutputContainer from './TipOutputContainer';
@@ -47,11 +48,29 @@ const TipCalculator = () => {
   }, [tipInputData]);
 
   return (
-    <div>
+    <Container>
       <TipInputContainer data={tipInputData} onChange={handleChange} />
       <TipOutputContainer data={tipOutputData} onReset={handleReset} />
-    </div>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.5rem;
+  background-color: var(--white);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  max-width: 1000px;
+  margin: 5rem auto;
+
+  @media (max-width: 945px) {
+    padding: 1.5rem;
+  }
+  @media (max-width: 850px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 export default TipCalculator;

@@ -28,7 +28,15 @@ const TipOutputContainer = ({ data, onReset: handleReset }: Props) => {
 const Container = styled.div`
   background-color: var(--dark-cyan);
   display: grid;
+  grid-template-rows: repeat(2, 1fr) 2fr;
   gap: 1rem;
+  align-items: flex-end;
+  padding: 2.5rem;
+  border-radius: 1rem;
+
+  @media (max-width: 450px) {
+    padding: 1.5rem;
+  }
 `;
 
 export default TipOutputContainer;
