@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UnionType } from '../types';
+import { FormInputTypes } from '../types';
 import Input from './Input';
 import TipAmountContainer from './TipAmountContainer';
 
 interface Props {
-  data: UnionType[];
+  data: FormInputTypes[];
   onChange: (id: string, value: string | number) => void;
 }
 

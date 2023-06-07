@@ -8,49 +8,43 @@ const TipCalculator = () => {
   const [tipOutputData, setTipOutputData] = useState(new TipOutput('$'));
 
   const handleChange = (id: string, value: string | number) => {
-    const updatedTipInputData = tipInputData.map((item) => {
-      if (item.id === id) {
-        return { ...item, value: value };
-      }
-      return item;
-    });
-
+    const updatedTipInputData = tipInputData.map((item) =>
+      item.id === id ? { ...item, value } : item
+    );
     setTipInputData(updatedTipInputData);
   };
 
-  const calculateTip = () => {
-    if (
-      tipInputData[0].value === 0 ||
-      tipInputData[0].value === '' ||
-      tipInputData[1].value === 0 ||
-      tipInputData[1].value === '' ||
-      tipInputData[2].value === 0 ||
-      tipInputData[2].value === ''
-    ) {
-      setTipOutputData(new TipOutput('$'));
-      return;
-    } else {
-      const bill = tipInputData[0].value as number;
-      const tipPercentage = (tipInputData[1].value as number) / 100;
-      const numberOfPeople = tipInputData[2].value as number;
-      const tipAmount = (bill * tipPercentage) / numberOfPeople;
-      const total = bill / numberOfPeople + tipAmount;
-
-      setTipOutputData({ tipAmount, total, currency: '$', active: true });
-    }
+  const handleReset = () => {
+    const resetTipInput = tipInputData.map((item) => ({
+      ...item,
+      value: 0,
+    }));
+    setTipInputData(resetTipInput);
   };
 
   useEffect(() => {
-    calculateTip();
+    const [bill, tip, numberOfPeople] = tipInputData.map(
+      (item) => item.value as number
+    );
+
+    if (bill === 0 || tip === 0 || numberOfPeople === 0) {
+      setTipOutputData(new TipOutput('$'));
+    } else {
+      const tipOutputInstance = new TipOutput('$');
+      const { tipAmount, total, active } = tipOutputInstance.calculateTip(
+        bill,
+        tip,
+        numberOfPeople
+      );
+
+      setTipOutputData({
+        ...tipOutputData,
+        tipAmount,
+        total,
+        active,
+      } as TipOutput);
+    }
   }, [tipInputData]);
-
-  const handleReset = () => {
-    const updatedTipInputData = tipInputData.map((item) => {
-      return { ...item, value: 0 };
-    });
-
-    setTipInputData(updatedTipInputData);
-  };
 
   return (
     <div>

@@ -25,8 +25,9 @@ const Input = ({
     const value = e.target.value;
 
     if (validator[valueType].test(value)) {
-      setInputValue(value);
-      onChange(id, value);
+      const formattedValue = valueType === 'string' ? value : Number(value);
+      setInputValue(formattedValue);
+      onChange(id, formattedValue);
       setInputError((error && value === '') as boolean);
     }
   };
