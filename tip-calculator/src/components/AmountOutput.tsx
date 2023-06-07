@@ -2,19 +2,20 @@ import React from 'react';
 import styled from 'styled-components';
 
 interface Props {
+  id: string;
   label: string;
   value: number;
   currency?: string;
 }
 
-const AmountOutput = ({ label, value, currency }: Props) => {
+const AmountOutput = ({ id, label, value, currency }: Props) => {
   return (
     <Container>
       <LabelContainer>
         <LabelPrimary>{label}</LabelPrimary>
         <LabelSecondary>/ person</LabelSecondary>
       </LabelContainer>
-      <Amount>
+      <Amount id={id}>
         {currency}
         {value.toFixed(2)}
       </Amount>

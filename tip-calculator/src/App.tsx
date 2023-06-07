@@ -15,7 +15,8 @@ const App = () => {
 
 const Container = styled.div`
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--light-grayish-cyan);

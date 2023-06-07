@@ -8,7 +8,7 @@ import { InputType, TipsType } from '../types';
 
 const customTipObj: InputType = {
   type: 'Input',
-  id: 'id_1',
+  id: 'input_custom',
   value: 0,
   valueType: 'integer',
   placeholder: 'Custom',

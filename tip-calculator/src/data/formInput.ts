@@ -6,7 +6,7 @@ export const formInputs: FormInputTypes[] = [
   {
     type: 'Input',
     valueType: 'float',
-    id: 'id_1',
+    id: 'input_bill',
     name: 'Bill',
     value: 0,
     icon: dollar,
@@ -14,7 +14,7 @@ export const formInputs: FormInputTypes[] = [
   },
   {
     type: 'TipAmountContainer',
-    id: 'id_2',
+    id: 'tip_amount_container',
     name: 'Select Tip %',
     value: 0,
     custom: true,
@@ -24,7 +24,7 @@ export const formInputs: FormInputTypes[] = [
   {
     type: 'Input',
     valueType: 'integer',
-    id: 'id_3',
+    id: 'input_people',
     name: 'Number of People',
     value: 0,
     icon: person,

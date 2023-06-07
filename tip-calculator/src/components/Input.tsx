@@ -45,6 +45,7 @@ const Input = ({
       <InputContainer>
         {icon && <Icon src={icon} alt="icon" />}
         <InputElement
+          name={id}
           inputError={inputError}
           data-testid="input"
           value={inputValue}

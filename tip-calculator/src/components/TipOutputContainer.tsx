@@ -13,11 +13,17 @@ const TipOutputContainer = ({ data, onReset: handleReset }: Props) => {
   return (
     <Container>
       <AmountOutput
+        id="tip-amount-output"
         label="Tip Amount"
         value={data.tipAmount}
         currency={data.currency}
       />
-      <AmountOutput label="Total" value={data.total} currency={data.currency} />
+      <AmountOutput
+        id="total-output"
+        label="Total"
+        value={data.total}
+        currency={data.currency}
+      />
       <Button onClick={handleReset} selected={true} disabled={!data.active}>
         RESET
       </Button>
