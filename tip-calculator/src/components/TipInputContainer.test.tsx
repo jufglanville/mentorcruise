@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TipInputContainer from './TipInputContainer';
-import { UnionType } from '../types';
+import { FormInputTypes } from '../types';
 
-const pricePlanData: UnionType[] = [
+const pricePlanData: FormInputTypes[] = [
   {
     type: 'Input',
     valueType: 'float',

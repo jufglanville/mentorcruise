@@ -58,7 +58,7 @@ describe('Input component', () => {
   describe('when the input type is integar', () => {
     it('calls the onChange callback when a valid input is given', () => {
       const mockOnChange = jest.fn();
-      const value = '123';
+      const value = 123;
       const id = 'test';
 
       render(
@@ -122,7 +122,7 @@ describe('Input component', () => {
       fireEvent.change(inputElement, { target: { value } });
 
       expect(mockOnChange).toHaveBeenCalledTimes(1);
-      expect(mockOnChange).toHaveBeenCalledWith(id, value);
+      expect(mockOnChange).toHaveBeenCalledWith(id, parseFloat(value));
     });
 
     it('does not call the onChange callback when an invalid input is given', () => {
