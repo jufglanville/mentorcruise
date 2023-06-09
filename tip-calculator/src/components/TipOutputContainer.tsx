@@ -5,26 +5,26 @@ import Button from './Button';
 import AmountOutput from './AmountOutput';
 
 interface Props {
-  data: TipOutputType;
+  tip: TipOutputType;
   onReset: () => void;
 }
 
-const TipOutputContainer = ({ data, onReset: handleReset }: Props) => {
+const TipOutputContainer = ({ tip, onReset: handleReset }: Props) => {
   return (
     <Container>
       <AmountOutput
         id="tip-amount-output"
         label="Tip Amount"
-        value={data.tipAmount}
-        currency={data.currency}
+        value={tip.getTipAmount()}
+        currency={tip.getCurrency()}
       />
       <AmountOutput
         id="total-output"
         label="Total"
-        value={data.total}
-        currency={data.currency}
+        value={tip.getTipTotal()}
+        currency={tip.getCurrency()}
       />
-      <Button onClick={handleReset} selected={true} disabled={!data.active}>
+      <Button onClick={handleReset} selected={true} disabled={!tip.getActive()}>
         RESET
       </Button>
     </Container>

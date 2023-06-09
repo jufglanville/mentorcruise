@@ -25,8 +25,8 @@ export type TipsType = {
 export type FormInputTypes = InputType | TipsType;
 
 export type TipOutputType = {
-  currency: string;
-  tipAmount: number;
-  total: number;
-  active: boolean;
+  getTipAmount: () => number;
+  getTipTotal: () => number;
+  getActive: () => boolean;
+  getCurrency: () => string;
 }

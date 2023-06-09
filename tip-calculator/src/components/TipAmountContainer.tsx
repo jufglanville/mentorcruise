@@ -5,15 +5,12 @@ import Button from './Button';
 import Input from './Input';
 
 import { TipsType } from '../types';
-import { InputCreator } from '../data/formInput';
+import { InputFactory } from '../data/formInput';
 
-const customTipObj = new InputCreator().createInput(
+const customTipObj = InputFactory.createInput(
   'input_custom',
   'integer',
   (id, value) => {},
-  undefined,
-  undefined,
-  undefined,
   'Custom'
 );
 

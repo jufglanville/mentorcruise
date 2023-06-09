@@ -8,17 +8,17 @@ import {
 import dollar from '../assets/icon-dollar.svg';
 import person from '../assets/icon-person.svg';
 
-export class InputCreator {
-  constructor() {}
+export class InputFactory {
+  private constructor() {}
 
-  public createInput(
+  public static createInput(
     id: string,
     valueTypes: DataTypes,
     onChange: (id: string, value: string | number) => void,
+    placeholder: string,
     name?: string,
     icon?: string,
-    error?: string,
-    placeholder?: string
+    error?: string
   ): InputType {
     return {
       type: 'Input',
@@ -33,7 +33,7 @@ export class InputCreator {
     };
   }
 
-  public createTipContainer(
+  public static createTipContainer(
     id: string,
     name: string,
     valueOptions: number[],
@@ -53,12 +53,12 @@ export class InputCreator {
 }
 
 export class TipOutput implements TipOutputType {
-  public currency: string;
-  public tipAmount: number;
-  public total: number;
-  public active: boolean;
+  private currency: string;
+  private tipAmount: number;
+  private total: number;
+  private active: boolean;
 
-  constructor(currency: string) {
+  constructor(currency: string = '$') {
     this.currency = currency;
     this.tipAmount = 0;
     this.total = 0;
@@ -77,27 +77,45 @@ export class TipOutput implements TipOutputType {
       this.active = true;
     }
   }
+
+  public getTipAmount(): number {
+    return this.tipAmount;
+  }
+
+  public getTipTotal(): number {
+    return this.total;
+  }
+
+  public getActive(): boolean {
+    return this.active;
+  }
+
+  public getCurrency(): string {
+    return this.currency;
+  }
 }
 
 export const formInputs: FormInputTypes[] = [
-  new InputCreator().createInput(
+  InputFactory.createInput(
     'input_bill',
     'float',
     (id, value) => {},
+    '0',
     'Bill',
     dollar
   ),
-  new InputCreator().createTipContainer(
+  InputFactory.createTipContainer(
     'tip_amount_container',
     'Select Tip %',
     [5, 10, 15, 25, 50],
     true,
     (id, value) => {}
   ),
-  new InputCreator().createInput(
+  InputFactory.createInput(
     'input_people',
     'integer',
     (id, value) => {},
+    '0',
     'Number of People',
     person,
     "Can't be zero"

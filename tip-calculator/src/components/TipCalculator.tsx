@@ -3,15 +3,17 @@ import styled from 'styled-components';
 import { formInputs, TipOutput } from '../data/formInput';
 import TipInputContainer from './TipInputContainer';
 import TipOutputContainer from './TipOutputContainer';
+import { FormInputTypes } from '../types';
 
 const TipCalculator = () => {
   const [tipInputData, setTipInputData] = useState(formInputs);
-  const [tipOutputData, setTipOutputData] = useState(new TipOutput('$'));
+  const [tipOutputData, setTipOutputData] = useState(new TipOutput());
 
   const handleChange = (id: string, value: string | number) => {
     const updatedTipInputData = tipInputData.map((item) =>
       item.id === id ? { ...item, value } : item
     );
+    updateTipOutput(updatedTipInputData);
     setTipInputData(updatedTipInputData);
   };
 
@@ -20,22 +22,23 @@ const TipCalculator = () => {
       ...item,
       value: 0,
     }));
+    updateTipOutput(resetTipInput);
     setTipInputData(resetTipInput);
   };
 
-  useEffect(() => {
-    const [bill, tip, numberOfPeople] = tipInputData.map(
+  const updateTipOutput = (updatedTipInputData: FormInputTypes[]) => {
+    const [bill, tip, numberOfPeople] = updatedTipInputData.map(
       (item) => item.value as number
     );
-    const calculatedTipOutput = new TipOutput('$');
+    const calculatedTipOutput = new TipOutput();
     calculatedTipOutput.calculateTip(bill, tip, numberOfPeople);
     setTipOutputData(calculatedTipOutput);
-  }, [tipInputData]);
+  };
 
   return (
     <Container data-testid="tip-calculator">
       <TipInputContainer data={tipInputData} onChange={handleChange} />
-      <TipOutputContainer data={tipOutputData} onReset={handleReset} />
+      <TipOutputContainer tip={tipOutputData} onReset={handleReset} />
     </Container>
   );
 };
