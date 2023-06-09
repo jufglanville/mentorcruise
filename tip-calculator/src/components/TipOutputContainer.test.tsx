@@ -2,20 +2,20 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import TipOutputContainer from './TipOutputContainer';
 
-const output = {
-  tipAmount: 10,
-  total: 20.23,
-  currency: '$',
-  active: true,
-};
+const output= {
+  getTipAmount: () => 10,
+  getTipTotal: () => 20.23,
+  getActive: () => true,
+  getCurrency: () => '$'
+}
 
 describe('TipOutputContainer', () => {
   it('renders TipOutputContainer without errors', () => {
-    render(<TipOutputContainer data={output} onReset={() => {}} />);
+    render(<TipOutputContainer tip={output} onReset={() => {}} />);
   });
 
   it('displays the correct amount values', () => {
-    render(<TipOutputContainer data={output} onReset={() => {}} />);
+    render(<TipOutputContainer tip={output} onReset={() => {}} />);
 
     const tipAmountHeading = screen.getByText('Tip Amount');
     const tipAmount = screen.getByText('$10.00');
@@ -30,7 +30,7 @@ describe('TipOutputContainer', () => {
   
   it('calls the onChange function when the reset button is clicked', () => {
     const handleChange = jest.fn();
-    render(<TipOutputContainer data={output} onReset={handleChange} />);
+    render(<TipOutputContainer tip={output} onReset={handleChange} />);
 
     const resetButton = screen.getByRole('button', { name: /reset/i });
     fireEvent.click(resetButton);
