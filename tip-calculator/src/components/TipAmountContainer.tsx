@@ -4,16 +4,18 @@ import styled from 'styled-components';
 import Button from './Button';
 import Input from './Input';
 
-import { InputType, TipsType } from '../types';
+import { TipsType } from '../types';
+import { InputCreator } from '../data/formInput';
 
-const customTipObj: InputType = {
-  type: 'Input',
-  id: 'input_custom',
-  value: 0,
-  valueType: 'integer',
-  placeholder: 'Custom',
-  onChange: (id: string, value: string | number) => {},
-};
+const customTipObj = new InputCreator().createInput(
+  'input_custom',
+  'integer',
+  (id, value) => {},
+  undefined,
+  undefined,
+  undefined,
+  'Custom'
+);
 
 const TipAmountContainer = ({
   id,

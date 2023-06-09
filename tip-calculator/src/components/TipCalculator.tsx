@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { formInputs, TipOutput } from '../data/formInput';
+import { formInputs, TipOutput, InputCreator } from '../data/formInput';
 import TipInputContainer from './TipInputContainer';
 import TipOutputContainer from './TipOutputContainer';
 
@@ -38,7 +38,7 @@ const TipCalculator = () => {
   }, [tipInputData]);
 
   return (
-    <Container>
+    <Container data-testid="tip-calculator">
       <TipInputContainer data={tipInputData} onChange={handleChange} />
       <TipOutputContainer data={tipOutputData} onReset={handleReset} />
     </Container>

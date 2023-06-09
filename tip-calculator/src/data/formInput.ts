@@ -1,37 +1,56 @@
-import { FormInputTypes, TipOutputType } from '../types';
+import {
+  FormInputTypes,
+  TipOutputType,
+  DataTypes,
+  InputType,
+  TipsType,
+} from '../types';
 import dollar from '../assets/icon-dollar.svg';
 import person from '../assets/icon-person.svg';
 
-export const formInputs: FormInputTypes[] = [
-  {
-    type: 'Input',
-    valueType: 'float',
-    id: 'input_bill',
-    name: 'Bill',
-    value: 0,
-    icon: dollar,
-    onChange: (id: string, value: string | number) => {},
-  },
-  {
-    type: 'TipAmountContainer',
-    id: 'tip_amount_container',
-    name: 'Select Tip %',
-    value: 0,
-    custom: true,
-    valueOptions: [5, 10, 15, 25, 50],
-    onChange: (id: string, value: string | number) => {},
-  },
-  {
-    type: 'Input',
-    valueType: 'integer',
-    id: 'input_people',
-    name: 'Number of People',
-    value: 0,
-    icon: person,
-    error: "Can't be zero",
-    onChange: (id: string, value: string | number) => {},
-  },
-];
+export class InputCreator {
+  constructor() {}
+
+  public createInput(
+    id: string,
+    valueTypes: DataTypes,
+    onChange: (id: string, value: string | number) => void,
+    name?: string,
+    icon?: string,
+    error?: string,
+    placeholder?: string
+  ): InputType {
+    return {
+      type: 'Input',
+      id: id,
+      name: name,
+      value: 0,
+      valueType: valueTypes,
+      icon: icon,
+      error: error,
+      placeholder: placeholder,
+      onChange: onChange,
+    };
+  }
+
+  public createTipContainer(
+    id: string,
+    name: string,
+    valueOptions: number[],
+    custom: boolean,
+    onChange: (id: string, value: string | number) => void
+  ): TipsType {
+    return {
+      type: 'TipAmountContainer',
+      id: id,
+      name: name,
+      value: 0,
+      valueOptions: valueOptions,
+      custom: custom,
+      onChange: onChange,
+    };
+  }
+}
 
 export class TipOutput implements TipOutputType {
   public currency: string;
@@ -53,3 +72,28 @@ export class TipOutput implements TipOutputType {
     this.active = true;
   }
 }
+
+export const formInputs: FormInputTypes[] = [
+  new InputCreator().createInput(
+    'input_bill',
+    'float',
+    (id, value) => {},
+    'Bill',
+    dollar
+  ),
+  new InputCreator().createTipContainer(
+    'tip_amount_container',
+    'Select Tip %',
+    [5, 10, 15, 25, 50],
+    true,
+    (id, value) => {}
+  ),
+  new InputCreator().createInput(
+    'input_people',
+    'integer',
+    (id, value) => {},
+    'Number of People',
+    person,
+    "Can't be zero"
+  ),
+];

@@ -1,11 +1,20 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
-import App from './App';
 import React from 'react';
+import App from './App';
 
-test('renders example component', () => {
-  render(<App />);
-  const heading = screen.getByText(/App/i);
-  expect(heading).toBeInTheDocument()
+
+describe('App', () => {
+  it('renders logo', () => {
+    render(<App />);
+    const logoElement = screen.getByAltText('logo');
+    expect(logoElement).toBeInTheDocument();
+  });
+
+  it('renders tip calculator', () => {
+    render(<App />);
+    const tipCalculatorElement = screen.getByTestId('tip-calculator');
+    expect(tipCalculatorElement).toBeInTheDocument();
+  });
 });

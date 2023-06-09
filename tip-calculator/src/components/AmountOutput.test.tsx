@@ -9,7 +9,7 @@ describe('AmountOutput', () => {
     const value = 12.23;
     const currency = '$';
 
-    render(<AmountOutput label={label} value={value} currency={currency} />);
+    render(<AmountOutput id='id' label={label} value={value} currency={currency} />);
 
     const labelElement = screen.getByText(label);
     const valueElement = screen.getByText(`${currency}${value}`);
@@ -22,7 +22,7 @@ describe('AmountOutput', () => {
     const label = 'Total Amount';
     const value = 100;
 
-    render(<AmountOutput label={label} value={value} />);
+    render(<AmountOutput id='id' label={label} value={value} />);
 
     const labelElement = screen.getByText(label);
     const valueElement = screen.getByText(`${value.toFixed(2)}`);

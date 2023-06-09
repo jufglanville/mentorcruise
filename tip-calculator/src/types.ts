@@ -1,9 +1,9 @@
-type dataTypes = 'float' | 'integer' | 'string';
+export type DataTypes = 'float' | 'integer' | 'string';
 
 export type InputType = {
   type: 'Input';
   id: string;
-  valueType: dataTypes;
+  valueType: DataTypes;
   value: string | number;
   icon?: string;
   name?: string;
