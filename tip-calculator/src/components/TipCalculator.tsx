@@ -38,7 +38,7 @@ const TipCalculator = () => {
   }, [tipInputData]);
 
   return (
-    <Container>
+    <Container data-testid="tip-calculator">
       <TipInputContainer data={tipInputData} onChange={handleChange} />
       <TipOutputContainer data={tipOutputData} onReset={handleReset} />
     </Container>
