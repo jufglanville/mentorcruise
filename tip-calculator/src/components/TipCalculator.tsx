@@ -27,14 +27,9 @@ const TipCalculator = () => {
     const [bill, tip, numberOfPeople] = tipInputData.map(
       (item) => item.value as number
     );
-
-    if (bill === 0 || tip === 0 || numberOfPeople === 0) {
-      setTipOutputData(new TipOutput('$'));
-    } else {
-      const calculatedTipOutput = new TipOutput('$');
-      calculatedTipOutput.calculateTip(bill, tip, numberOfPeople);
-      setTipOutputData({ ...calculatedTipOutput } as TipOutput);
-    }
+    const calculatedTipOutput = new TipOutput('$');
+    calculatedTipOutput.calculateTip(bill, tip, numberOfPeople);
+    setTipOutputData(calculatedTipOutput);
   }, [tipInputData]);
 
   return (
