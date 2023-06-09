@@ -48,9 +48,8 @@ export class TipOutput implements TipOutputType {
 
   public calculateTip(bill: number, tip: number, numberOfPeople: number) {
     const tipPercentage = tip / 100;
-    const tipAmount = (bill * tipPercentage) / numberOfPeople;
-    const total = bill / numberOfPeople + tipAmount;
-
-    return { tipAmount, total, active: true };
+    this.tipAmount = (bill * tipPercentage) / numberOfPeople;
+    this.total = bill / numberOfPeople + this.tipAmount;
+    this.active = true;
   }
 }
