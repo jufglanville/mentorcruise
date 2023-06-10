@@ -120,3 +120,9 @@ display:revert; revert to element instead of attribute */
 body {
   font-family: 'Poppins', sans-serif;
 }
+
+/* Remove Input styles in Chrome */
+input:-webkit-autofill {
+  -webkit-box-shadow: 200px 200px 100px white inset;
+  box-shadow: 200px 200px 100px white inset;
+}

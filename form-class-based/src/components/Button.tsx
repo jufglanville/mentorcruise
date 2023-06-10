@@ -17,9 +17,10 @@ class Button extends Component<Props, State> {
     this.state = { clicked: false };
   }
   render() {
+    const { active, children, onClick } = this.props;
     return (
-      <Btn onClick={this.props.onClick} disabled={!this.props.active}>
-        {this.props.children}
+      <Btn onClick={onClick} disabled={!active}>
+        {children}
       </Btn>
     );
   }
