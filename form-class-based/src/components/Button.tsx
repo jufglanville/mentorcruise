@@ -35,6 +35,7 @@ const Btn = styled.button`
   font-size: 1rem;
   font-weight: 500;
   text-transform: uppercase;
+  text-align: center;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
