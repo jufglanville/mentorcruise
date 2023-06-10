@@ -9,6 +9,7 @@ import { InputType } from '../types';
 interface State {
   formSubmitted: boolean;
   inputs: InputType[];
+  error: boolean;
 }
 
 class SignUpForm extends Component<{}, State> {
@@ -16,6 +17,7 @@ class SignUpForm extends Component<{}, State> {
     super(props);
     this.state = {
       formSubmitted: false,
+      error: false,
       inputs: [
         new InputClass('text', 'First Name'),
         new InputClass('text', 'Last Name'),
@@ -40,6 +42,11 @@ class SignUpForm extends Component<{}, State> {
   handleSubmit = () => {
     this.setState({ formSubmitted: true });
     // Handle form submission
+    this.state.inputs.forEach((input: InputType) => {
+      if (!input.isValid) {
+        this.setState({ error: true });
+      }
+    });
   };
 
   render() {
@@ -53,9 +60,7 @@ class SignUpForm extends Component<{}, State> {
             {...input}
           />
         ))}
-        <Button active={true} onClick={this.handleSubmit}>
-          Claim your free trial
-        </Button>
+        <Button onClick={this.handleSubmit}>Claim your free trial</Button>
         <Terms>
           By clicking the button, you are agreeing to our{' '}
           <TermsLink href="#">Terms and Services</TermsLink>
@@ -68,7 +73,7 @@ class SignUpForm extends Component<{}, State> {
 const Form = styled.form`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: repeat(5, 1fr);
+  grid-template-rows: repeat(5, auto);
   grid-gap: 1rem;
   padding: 1rem;
   background-color: var(--white);

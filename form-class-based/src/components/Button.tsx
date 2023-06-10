@@ -2,7 +2,6 @@ import React, { Component, ReactNode } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  active: boolean;
   children: ReactNode;
   onClick: () => void;
 }
@@ -17,19 +16,15 @@ class Button extends Component<Props, State> {
     this.state = { clicked: false };
   }
   render() {
-    const { active, children, onClick } = this.props;
-    return (
-      <Btn onClick={onClick} disabled={!active}>
-        {children}
-      </Btn>
-    );
+    const { children, onClick } = this.props;
+    return <Btn onClick={onClick}>{children}</Btn>;
   }
 }
 
 const Btn = styled.button`
   background-color: var(--green);
   color: var(--white);
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1rem;
   border-radius: 0.3rem;
   border: none;
   font-size: 1rem;
