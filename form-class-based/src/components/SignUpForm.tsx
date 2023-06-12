@@ -75,14 +75,14 @@ const Form = styled.form`
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, auto);
   grid-gap: 1rem;
-  padding: 1rem;
+  padding: 1.5rem 2rem 2rem 2rem;
   background-color: var(--white);
   border-radius: 0.5rem;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
 `;
 
 const Terms = styled.p`
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   text-align: center;
   color: var(--grayish-blue);
 `;

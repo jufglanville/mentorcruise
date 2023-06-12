@@ -126,3 +126,7 @@ input:-webkit-autofill {
   -webkit-box-shadow: 200px 200px 100px white inset;
   box-shadow: 200px 200px 100px white inset;
 }
+
+strong {
+  font-weight: 700;
+}

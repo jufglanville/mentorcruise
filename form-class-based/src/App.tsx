@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import SignUpForm from './components/SignUpForm';
+import SignUpPage from './pages/SignUpPage';
 
 class App extends Component {
   render() {
-    return <SignUpForm />;
+    return <SignUpPage />;
   }
 }
 

@@ -62,14 +62,15 @@ const InputElement = styled.input<{
   $formSubmitted: boolean;
 }>`
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 1rem;
   border-radius: 0.3rem;
   border: 1px solid;
   border-color: ${(props) =>
     !props.$isValid && props.$formSubmitted
       ? 'var(--error)'
       : 'var(--grayish-blue)'};
-  font-size: 1rem;
+  font-size: 0.8rem;
+  font-weight: 600;
   background-color: var(--white);
   color: var(--dark-blue);
   &:focus {
