@@ -12,6 +12,10 @@ interface State {
   error: boolean;
 }
 
+interface SubmissionData {
+  [key: string]: string;
+}
+
 class SignUpForm extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
@@ -41,12 +45,21 @@ class SignUpForm extends Component<{}, State> {
 
   handleSubmit = () => {
     this.setState({ formSubmitted: true });
-    // Handle form submission
+    let err = false;
+    const data: SubmissionData = {};
     this.state.inputs.forEach((input: InputType) => {
-      if (!input.isValid) {
+      if (input.isValid && input.value) {
+        data[input.id] = input.value;
+      } else {
+        err = true;
         this.setState({ error: true });
       }
     });
+    if (!err) {
+      // Handle form submission
+      const json = JSON.stringify(data);
+      console.log(json);
+    }
   };
 
   render() {
@@ -70,7 +83,7 @@ class SignUpForm extends Component<{}, State> {
   }
 }
 
-const Form = styled.form`
+const Form = styled.div`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: repeat(5, auto);
