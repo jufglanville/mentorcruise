@@ -38,30 +38,33 @@ describe('Button component', () => {
     expect(button).toBeDisabled();
   });
 
-  // it('Applies the correct styles when selected', () => {
-  //   render(
-  //     <Button selected={true} onClick={mockOnClick}>
-  //       Click Me
-  //     </Button>
-  //   );
-  //   const button = screen.getByText(/click me/i);
-  //   expect(button).toHaveStyle(`
-  //     background-color: hsl(172, 67%, 45%);
-  //     color: hsl(183, 100%, 15%);
-  //   `);
-  // });
+  it('Applies the correct styles when selected', () => {
+    const {container} = render(
+      <Button selected={true} onClick={mockOnClick}>
+        Click Me
+      </Button>
+    );
 
-  // it('Applies the correct styles when not selected', () => {
-  //   render(
-  //     <Button onClick={mockOnClick}>
-  //       Click Me
-  //     </Button>
-  //   );
-  //   const button = screen.getByText(/click me/i);
-  //   expect(button).toHaveStyle(`
-  //     background-color: hsl(183, 100%, 15%);
-  //     color: hsl(0, 0%, 100%);
-  //   `);
-  // });
+    expect(container.firstChild).toMatchSnapshot();
+  });
 
+  it('Applies the correct default styles', () => {
+    const {container} = render(
+      <Button selected={false} onClick={mockOnClick}>
+        Click Me
+      </Button>
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
+  it('Applies the correct styles when disabled', () => {
+    const {container} = render(
+      <Button selected={false} onClick={mockOnClick} disabled={true}>
+        Click Me
+      </Button>
+    );
+
+    expect(container.firstChild).toMatchSnapshot();
+  });
 });
