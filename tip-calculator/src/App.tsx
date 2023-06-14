@@ -22,14 +22,14 @@ const App = () => {
       />
       <Input
         label="Number of People"
-        type="integar"
+        type="integer"
         value={0}
         icon={person}
         onChange={handleChange}
         error="Can't be zero"
       />
       <Input
-        type="integar"
+        type="integer"
         value={0}
         onChange={handleChange}
         placeholder="Custom"

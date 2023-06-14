@@ -4,7 +4,7 @@ import styled from 'styled-components';
 interface Props {
   icon?: string;
   label?: string;
-  type: 'float' | 'integar' | 'string';
+  type: 'float' | 'integer' | 'string';
   value: string | number;
   error?: string;
   placeholder?: string;
@@ -24,7 +24,7 @@ const Input = ({
   const [inputError, setInputError] = useState(false);
 
   const validator = {
-    integar: /^(?!0)\d*$|^$/,
+    integer: /^(?!0)\d*$|^$/,
     float: /^0(\.\d{0,2})?$|^[1-9]\d*(\.\d{0,2})?$|^$/,
     string: /^[A-Za-z]*$|^$/,
   };

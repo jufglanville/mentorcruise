@@ -11,7 +11,7 @@ describe('Input component', () => {
     render(
       <Input
         label="Bill"
-        type="integar"
+        type="integer"
         value={0}
         icon="https://via.placeholder.com/20"
         onChange={mockOnChange}
@@ -25,7 +25,7 @@ describe('Input component', () => {
     render(
       <Input
         label="Bill"
-        type="integar"
+        type="integer"
         value={0}
         icon="https://via.placeholder.com/20"
         onChange={mockOnChange}
@@ -39,7 +39,7 @@ describe('Input component', () => {
     render(
       <Input
         label="Bill"
-        type="integar"
+        type="integer"
         value={0}
         icon="https://via.placeholder.com/20"
         onChange={mockOnChange}
@@ -49,7 +49,7 @@ describe('Input component', () => {
     expect(input).toHaveAttribute('src', 'https://via.placeholder.com/20');
   });
 
-  describe('when the input type is integar', () => {
+  describe('when the input type is integer', () => {
     it('calls the onChange callback when a valid input is given', () => {
       const mockOnChange = jest.fn();
       const value = '123';
@@ -58,7 +58,7 @@ describe('Input component', () => {
         <Input
           label="Test Label"
           icon="test-icon.png"
-          type="integar"
+          type="integer"
           value=""
           onChange={mockOnChange}
         />
@@ -79,7 +79,7 @@ describe('Input component', () => {
         <Input
           label="Test Label"
           icon="test-icon.png"
-          type="integar"
+          type="integer"
           value=""
           onChange={mockOnChange}
         />
