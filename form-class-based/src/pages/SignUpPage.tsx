@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import SignUpInfo from '../components/SignUpInfo';
 import SignUpForm from '../components/SignUpForm';
+import Pill from '../components/Pill';
 
 import desktopBg from '../assets/bg-intro-desktop.png';
 import mobileBg from '../assets/bg-intro-mobile.png';
@@ -48,19 +49,6 @@ const Container = styled.div`
   @media (max-width: 768px) {
     width: 100%;
   }
-`;
-
-const Pill = styled.div`
-  background-color: var(--blue);
-  color: var(--white);
-  padding: 1rem 2rem;
-  border-radius: 0.3rem;
-  border: none;
-  font-size: 0.8rem;
-  text-align: center;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.5);
-  letter-spacing: 0.05rem;
-  margin-bottom: 1rem;
 `;
 
 export default SignUpPage;
