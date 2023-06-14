@@ -7,15 +7,7 @@ import SignUpForm from '../components/SignUpForm';
 import desktopBg from '../assets/bg-intro-desktop.png';
 import mobileBg from '../assets/bg-intro-mobile.png';
 
-interface Props {}
-
-interface State {}
-
-class SignUpPage extends React.Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-  }
-
+class SignUpPage extends React.Component {
   render() {
     return (
       <Page>

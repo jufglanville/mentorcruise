@@ -41,6 +41,7 @@ class Input extends Component<Props> {
           $isValid={isValid}
           $formSubmitted={formSubmitted}
           value={value}
+          autoComplete="off"
         />
         {!isValid && formSubmitted && (
           <>

@@ -12,10 +12,6 @@ interface State {
   error: boolean;
 }
 
-interface SubmissionData {
-  [key: string]: string;
-}
-
 class SignUpForm extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
@@ -45,19 +41,16 @@ class SignUpForm extends Component<{}, State> {
 
   handleSubmit = () => {
     this.setState({ formSubmitted: true });
-    let err = false;
-    const data: SubmissionData = {};
-    this.state.inputs.forEach((input: InputType) => {
-      if (input.isValid && input.value) {
-        data[input.id] = input.value;
-      } else {
-        err = true;
-        this.setState({ error: true });
-      }
-    });
-    if (!err) {
+    const valid = this.state.inputs.every(
+      (input: InputType) => input.isValid && input.value
+    );
+    if (valid) {
       // Handle form submission
-      const json = JSON.stringify(data);
+      const json = JSON.stringify(
+        this.state.inputs.map((input: InputType) => ({
+          [input.id]: input.value,
+        }))
+      );
       console.log(json);
     }
   };
