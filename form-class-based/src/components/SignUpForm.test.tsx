@@ -34,5 +34,23 @@ describe('SignUpForm component', () => {
     expect(firstNameInput).toHaveValue('John');
   });
 
-  // Tests needed for For Submission, Validation, and Error Messages
+  it('submits a json object with input values when form is submitted with valid inputs', () => {
+    const { getByText, getByPlaceholderText } = render(<SignUpForm />);
+
+    const firstNameInput = getByPlaceholderText('First Name');
+    const lastNameInput = getByPlaceholderText('Last Name');
+    const emailInput = getByPlaceholderText('Email Address');
+    const passwordInput = getByPlaceholderText('Password');
+    const submitButton = getByText('Claim your free trial');
+
+    const consoleLogSpy = jest.spyOn(console, 'log');
+
+    fireEvent.change(firstNameInput, { target: { value: 'John' } });
+    fireEvent.change(lastNameInput, { target: { value: 'Doe' } });
+    fireEvent.change(emailInput, { target: { value: 'john.doe@mail.com' } });
+    fireEvent.change(passwordInput, { target: { value: 'Password123' } });
+    fireEvent.click(submitButton);
+
+    expect(consoleLogSpy).toHaveBeenCalledWith('[{"first-name":"John"},{"last-name":"Doe"},{"email-address":"john.doe@mail.com"},{"password":"Password123"}]');
+  });
 });
