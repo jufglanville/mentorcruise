@@ -1,19 +1,21 @@
 export type InputElementType = 'text' | 'email' | 'password';
 
-export type InputValidation = {
-  valid: (val: string) => boolean;
-  errorMessage: string;
+export type InputValidationTest = {
+  test: (val: string) => boolean;
+  errorMessage: (val: string) => string;
 }
 
 export type InputValidationMap = {
-  [key in InputElementType]: InputValidation;
+  [key in InputElementType]: InputValidationTest[];
 }
 
 export type InputType = {
   id: string;
   type: InputElementType;
-  placeholder: string;
-  validation: InputValidation;
+  name: string;
+  validation: InputValidationTest[];
+  errorMessage: string;
   isValid: boolean;
   value?: string;
+  validate: () => void;
 }

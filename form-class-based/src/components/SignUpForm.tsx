@@ -31,7 +31,7 @@ class SignUpForm extends Component<{}, State> {
     const inputs = this.state.inputs.map((input: InputType) => {
       if (input.id === id) {
         input.value = value;
-        input.isValid = input.validation.valid(value);
+        input.validate();
       }
       return input;
     });

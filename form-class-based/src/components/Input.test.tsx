@@ -2,22 +2,16 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Input from './Input';
-import { InputValidation } from '../types';
-
-const validation: InputValidation = {
-  valid: jest.fn(),
-  errorMessage: 'Invalid input',
-}
 
 describe('Input component', () => {
   const defaultProps = {
     formSubmitted: false,
     id: 'input-id',
-    placeholder: 'Input Placeholder',
+    name: 'Input Placeholder',
     type: 'text',
-    validation: validation,
     value: '',
     isValid: true,
+    errorMessage: 'Invalid input',
     onChange: jest.fn(),
   };
 

@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import { InputValidation } from '../types';
 
 import error from '../assets/icon-error.svg';
 
 interface Props {
   formSubmitted: boolean;
   id: string;
-  placeholder: string;
+  name: string;
   type: string;
-  validation: InputValidation;
+  errorMessage: string;
   value?: any;
   isValid: boolean;
   onChange: (id: string, value: string) => void;
@@ -24,11 +23,11 @@ class Input extends Component<Props> {
     const {
       formSubmitted,
       id,
-      value,
-      placeholder,
+      name,
       type,
-      validation,
+      value,
       isValid,
+      errorMessage,
       onChange,
     } = this.props;
     return (
@@ -37,7 +36,7 @@ class Input extends Component<Props> {
           id={id}
           onChange={(e) => onChange(id, e.target.value)}
           type={type}
-          placeholder={placeholder}
+          placeholder={name}
           $isValid={isValid}
           $formSubmitted={formSubmitted}
           value={value}
@@ -46,7 +45,7 @@ class Input extends Component<Props> {
         {!isValid && formSubmitted && (
           <>
             <ErrorIcon src={error} alt="error" />
-            <ErrorMessage>{validation.errorMessage}</ErrorMessage>
+            <ErrorMessage>{errorMessage}</ErrorMessage>
           </>
         )}
       </Container>
