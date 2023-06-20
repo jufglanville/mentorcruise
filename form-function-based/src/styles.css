@@ -1,3 +1,15 @@
+:root {
+  --mobile: 375px;
+  --desktop: 1440px;
+  --red: hsl(0, 100%, 74%);
+  --green: hsl(154, 59%, 51%);
+  --blue: hsl(248, 32%, 49%);
+  --dark-blue: hsl(249, 10%, 26%);
+  --grayish-blue: hsl(246, 25%, 77%);
+  --error: hsl(0, 75%, 59%);
+  --white: hsl(0, 0%, 100%);
+}
+
 /***
     The new CSS reset - version 1.8.4 (last updated 14.2.2023)
     GitHub page: https://github.com/elad2412/the-new-css-reset
@@ -106,5 +118,15 @@ display:revert; revert to element instead of attribute */
 
 /* Set Default Font */
 body {
-  font-family: 'Red Hat Display', sans-serif;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Remove Input styles in Chrome */
+input:-webkit-autofill {
+  -webkit-box-shadow: 200px 200px 100px white inset;
+  box-shadow: 200px 200px 100px white inset;
+}
+
+strong {
+  font-weight: 700;
 }

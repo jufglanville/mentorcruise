@@ -10,9 +10,11 @@ module.exports = {
   testEnvironment: 'jsdom',
 	transformIgnorePatterns: [
     '/node_modules/',
-    '^.+\\.svg$'
+    '^.+\\.svg$',
+    '^.+\\.png$'
   ],
   moduleNameMapper: {
-    '\\.svg$': '<rootDir>/src/__mocks__/svgMock.ts'
+    '\\.svg$': '<rootDir>/src/__mocks__/svgMock.ts',
+    '\\.png$': '<rootDir>/src/__mocks__/pngMock.ts'
   }
 }
