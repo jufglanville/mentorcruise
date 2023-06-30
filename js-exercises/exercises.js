@@ -37,7 +37,10 @@ console.log(
 */
 
 const isPalindrome = (str) => {
-  return str === str.split("").reverse().join("");
+  return str.split('').reduce((match, char, idx) => {
+    if (!match) return false;
+    return char === str[str.length - idx - 1];
+  }, true);
 };
 
 console.log(`3) Is Palindrome: racecar = ${isPalindrome("racecar")}`);
@@ -50,6 +53,7 @@ console.log(`3) Is Palindrome: abca = ${isPalindrome("abca")}`);
 */
 
 const areArraysEqual = (arr1, arr2) => {
+  if (arr1 === arr2) return true;
   if (arr1.length !== arr2.length) return false;
   for (let i = 0; i < arr1.length; ++i) {
     if (arr1[i] !== arr2[i]) return false;
@@ -72,13 +76,20 @@ console.log(
 */
 
 const removeDuplicates = (arr) => {
-  const newArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (!newArr.includes(arr[i])) {
-      newArr.push(arr[i]);
+  // const newArr = [];
+  // for (let i = 0; i < arr.length; i++) {
+  //   if (!newArr.includes(arr[i])) {
+  //     newArr.push(arr[i]);
+  //   }
+  // }
+  // return newArr;
+
+  return arr.reduce((newArr, char) => {
+    if (!newArr.includes(char)) {
+      newArr.push(char);
     }
-  }
-  return newArr;
+    return newArr;
+  }, []);
 };
 
 console.log(
